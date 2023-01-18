@@ -1,10 +1,8 @@
-import React from "react";
 import Image from "next/image";
 import {
   HomeIcon,
   UserGroupIcon,
   BellIcon,
-  
   ChatBubbleOvalLeftIcon,
   ChevronDownIcon,
   Squares2X2Icon,
@@ -16,16 +14,14 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import HeaderIcon from "./HeaderIcon";
+import { signOut, useSession } from "next-auth/react";
 
 function Header() {
+  const [session] = useSession();
   return (
     <div className="sticky top-0 z-50 lg:px-5 shadow-md bg-white flex items-center p-2">
       <div className="flex items-center">
-        <Image
-          src="https://links.papareact.com/5me"
-          width={40}
-          height={40}
-        />
+        <Image src="https://links.papareact.com/5me" width={40} height={40} />
         <div className="flex ml-2 items-center bg-gray-100 rounded-full p-2">
           <MagnifyingGlassIcon className="h-6 text-gray-600" />
           <input
@@ -35,7 +31,7 @@ function Header() {
           />
         </div>
       </div>
-      <div className=" flex justify-center flex-grow">
+      <div className="flex justify-center flex-grow">
         <div className="flex items-center space-x-6 md:space-x-2">
           <HeaderIcon active Icon={HomeIcon} />
           <HeaderIcon Icon={FlagIcon} />
@@ -45,9 +41,17 @@ function Header() {
         </div>
       </div>
 
-      <div className="flex justify-end items-center sm:space-x-2 ">
+      <div className="flex justify-end items-center sm:space-x-2">
+        <Image
+          onClick={signOut}
+          className="rounded-full cursor-pointer"
+          src={session.user.image}
+          width="40"
+          height="40"
+          layout="fixed"
+        />
         <p className="font-semibold pr-3 whitespace-nowrap">
-          Fortune Omorodion
+          {session.user.name}
         </p>
         <Squares2X2Icon className="icon" />
         <ChatBubbleOvalLeftIcon className="icon" />

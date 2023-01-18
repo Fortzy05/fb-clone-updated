@@ -9,25 +9,25 @@ import Login from "../components/Login";
 export default function Home({ session }) {
   if (!session) return <Login />;
   return (
-    <>
+    <div className="h-screen bg-gray-500 overflow-hidden">
       <Head>
         <title>Facebook</title>
       </Head>
       <Header />
-      <main className="grid grid-cols-9">
+      <main className="flex">
         <Sidebar />
         <Feed />
         <Widget />
       </main>
-    </>
+    </div>
   );
 }
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   return {
-    Props: {
-      session
+    props: {
+      session,
     },
   };
 }
