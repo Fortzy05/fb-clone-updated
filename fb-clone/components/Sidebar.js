@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 import SidebarRow from "./SidebarRow";
 
 function Sidebar() {
-  const [session, loading] = useSession();
+  const {data:session} = useSession();
   return (
     <div className="p-2 mt-5 max-w-{600px} xl:min-w-{300px} col-span-2">
       <SidebarRow Icon={session.user.image} title={session.user.name} />

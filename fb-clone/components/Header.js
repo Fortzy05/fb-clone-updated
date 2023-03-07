@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import {
   HomeIcon,
   UserGroupIcon,
@@ -16,8 +16,8 @@ import {
 import HeaderIcon from "./HeaderIcon";
 import { signOut, useSession } from "next-auth/react";
 
-function Header() {
-  const [session] = useSession();
+export default function Header() {
+  const {data:session} = useSession();
   return (
     <div className="sticky top-0 z-50 lg:px-5 shadow-md bg-white flex items-center p-2">
       <div className="flex items-center">
@@ -62,4 +62,4 @@ function Header() {
   );
 }
 
-export default Header;
+// export default Header;
