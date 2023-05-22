@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import {
   HomeIcon,
   UserGroupIcon,
@@ -46,9 +46,9 @@ export default function Header() {
           onClick={signOut}
           className="rounded-full cursor-pointer"
           src={session.user.image}
-          width="40"
-          height="40"
-          layout="fixed"
+          width={40}
+          height={40}
+          
         />
         <p className="font-semibold pr-3 whitespace-nowrap">
           {session.user.name}
